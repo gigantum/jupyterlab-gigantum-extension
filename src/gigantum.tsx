@@ -1,8 +1,12 @@
-// import { find } from '@phosphor/algorithm';
+// This is a Typescript / JSX file
+// Note that tsconfig.json needs to include compilerOptions.jsx = "react"
+// for tsc (and thus jlpm) to work by default
 
 import { Panel } from '@phosphor/widgets';
+// These libs don't have default exports, so this grabs everything
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+
 // import { ToolbarButton } from '@jupyterlab/apputils';
 
 // import { URLExt } from '@jupyterlab/coreutils';
@@ -13,7 +17,7 @@ import * as ReactDOM from 'react-dom';
 /**
  * Widget for hosting the GitHub filebrowser.
  */
-export class GigantumWidget extends Panel {
+class GigantumWidget extends Panel {
   client_url: string;
 
   constructor() {
@@ -26,7 +30,6 @@ export class GigantumWidget extends Panel {
     this.addClass('jp-GigantumWidget');
 
     ReactDOM.render(<GigantumContents />, this.node);
-    // this.node.appendChild(document.createTextNode('You are using Gigantum'));
   }
 
 }
