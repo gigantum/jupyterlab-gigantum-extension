@@ -29,17 +29,16 @@ class GigantumWidget extends Panel {
 
     this.addClass('jp-GigantumWidget');
 
-    ReactDOM.render(<GigantumContents />, this.node);
+    ReactDOM.render(<GigantumInfo />, this.node);
   }
 
 }
 
-interface ContentsState {
-    client_url: string;
-}
 
-class GigantumContents extends React.Component {
-  state: ContentsState;
+class GigantumInfo extends React.Component {
+  state: {
+      client_url: string
+  };
 
   constructor(props: object) {
     super(props);
