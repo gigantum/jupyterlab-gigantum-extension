@@ -36,18 +36,33 @@ type InfoProps = {
 
 class GigantumInfo extends React.Component {
   props: InfoProps;
+  state: { activeCell?: any,
+           activityMode: string };
   // Once we have state, we should also specify types here
 
   constructor(props: InfoProps) {
     super(props);
-    // this.state = { };
+    this.state = { activityMode: 'auto' };
+  }
+
+  // Note that I couldn't figure out a better type for this
+  setTag(event: any) {
+    this.setState({activityMode: event.target.value})
+    console.log(this.state);
   }
 
   render(): React.ReactElement<any> {
+    // the radio buttons are "uncontrolled" because radio buttons are annoying */
     return(
       <div>
         <h1>gigantum!</h1>
         <p><a href={this.props.client_url}>Open client</a></p>
+        <div onChange={event => this.setTag(event)}>
+          <input type="radio" value="auto" defaultChecked name="gigTag"/> Auto
+          <input type="radio" value="show" name="gigTag"/> Show
+          <input type="radio" value="hide" name="gigTag"/> Hide
+          <input type="radio" value="ignore" name="gigTag"/> Ignore
+        </div>
       </div>
     );
   }
