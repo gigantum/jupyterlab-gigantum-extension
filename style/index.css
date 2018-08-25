@@ -5,3 +5,8 @@
 [data-theme-light='false'] .jp-Gigantum-icon {
   background-image: url(gigantum.png);
 }
+
+.jp-GigantumWidget {
+  background-color: var(--jp-layout-color1);
+  height: 100%; 
+}
