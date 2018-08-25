@@ -14,9 +14,6 @@ import * as ReactDOM from 'react-dom';
 // import { ObservableValue } from '@jupyterlab/observables';
 
 
-/**
- * Widget for hosting the GitHub filebrowser.
- */
 class GigantumWidget extends Panel {
 
   constructor(client_url="https://localhost:10000") {
@@ -33,14 +30,15 @@ class GigantumWidget extends Panel {
 
 }
 
+type InfoProps {
+  client_url: string
+};
 
 class GigantumInfo extends React.Component {
-  props: {
-      client_url: string
-  };
+  props: InfoProps;
   // Once we have state, we should also specify types here
 
-  constructor(props: object) {
+  constructor(props: InfoProps) {
     super(props);
     // this.state = { };
   }
