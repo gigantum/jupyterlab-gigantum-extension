@@ -16,7 +16,7 @@ import * as ReactDOM from 'react-dom';
 
 class GigantumWidget extends Panel {
 
-  constructor(client_url="https://localhost:10000") {
+  constructor(client_url: string = "https://localhost:10000") {
     super();
 
     // Set some basic styling
@@ -30,7 +30,7 @@ class GigantumWidget extends Panel {
 
 }
 
-type InfoProps {
+type InfoProps = {
   client_url: string
 };
 
@@ -46,7 +46,7 @@ class GigantumInfo extends React.Component {
   render(): React.ReactElement<any> {
     return(
       <div>
-        <h1>gigantum</h1>
+        <h1>gigantum!</h1>
         <p><a href={this.props.client_url}>Open client</a></p>
       </div>
     );
