@@ -1,0 +1,7 @@
+[data-theme-light='true'] .jp-Gigantum-icon {
+  background-image: url(gigantum.png);
+}
+
+[data-theme-light='false'] .jp-Gigantum-icon {
+  background-image: url(gigantum.png);
+}
