@@ -5,6 +5,8 @@ import {
 import { Panel } from '@phosphor/widgets';
 import { Cell } from '@jupyterlab/cells';
 
+import {get_activity_mode} from "./cellutil"
+
 import { INotebookTracker } from '@jupyterlab/notebook';
 
 
@@ -42,7 +44,7 @@ export class GigantumWidget extends Panel {
   }
 
   protected selectCellHandler(notebook_Tracker: INotebookTracker, cell: Cell): void {
-    console.log(cell.model.metadata.get('tags'))
+    console.log(get_activity_mode(cell))
   }
 
 }
