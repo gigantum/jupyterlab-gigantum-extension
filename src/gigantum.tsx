@@ -18,15 +18,14 @@ import * as ReactDOM from 'react-dom';
  * Widget for hosting the GitHub filebrowser.
  */
 class GigantumWidget extends Panel {
-  client_url: string;
 
   constructor(client_url="https://localhost:10000") {
     super();
-    this.client_url = 'https://localhost:10000'
+
+    // Set some basic styling
     this.title.iconClass = 'jp-Gigantum-icon jp-SideBar-tabIcon';
     this.title.caption = 'Gigantum';
     this.id = 'jp-GigantumWidget';
-
     this.addClass('jp-GigantumWidget');
 
     ReactDOM.render(<GigantumInfo client_url={client_url} />, this.node);
