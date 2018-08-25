@@ -20,7 +20,7 @@ import * as ReactDOM from 'react-dom';
 class GigantumWidget extends Panel {
   client_url: string;
 
-  constructor() {
+  constructor(client_url="https://localhost:10000") {
     super();
     this.client_url = 'https://localhost:10000'
     this.title.iconClass = 'jp-Gigantum-icon jp-SideBar-tabIcon';
@@ -29,27 +29,28 @@ class GigantumWidget extends Panel {
 
     this.addClass('jp-GigantumWidget');
 
-    ReactDOM.render(<GigantumInfo />, this.node);
+    ReactDOM.render(<GigantumInfo client_url={client_url} />, this.node);
   }
 
 }
 
 
 class GigantumInfo extends React.Component {
-  state: {
+  props: {
       client_url: string
   };
+  // Once we have state, we should also specify types here
 
   constructor(props: object) {
     super(props);
-    this.state = { client_url: 'https://localhost:10000' };
+    // this.state = { };
   }
 
   render(): React.ReactElement<any> {
     return(
       <div>
         <h1>gigantum</h1>
-        <p><a href={this.state.client_url}>Open client</a></p>
+        <p><a href={this.props.client_url}>Open client</a></p>
       </div>
     );
   }
