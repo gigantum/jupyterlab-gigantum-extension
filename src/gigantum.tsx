@@ -1,7 +1,8 @@
 // import { find } from '@phosphor/algorithm';
 
 import { Panel } from '@phosphor/widgets';
-
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 // import { ToolbarButton } from '@jupyterlab/apputils';
 
 // import { URLExt } from '@jupyterlab/coreutils';
@@ -23,7 +24,22 @@ export class GigantumWidget extends Panel {
     this.id = 'jp-GigantumWidget';
 
     this.addClass('jp-GigantumWidget');
-    this.node.appendChild(document.createTextNode('You are using Gigantum'));
+
+    ReactDOM.render(<GigantumContents />, this.node);
+    // this.node.appendChild(document.createTextNode('You are using Gigantum'));
+  }
+
+}
+
+
+class GigantumContents extends React.Component {
+  render(): React.ReactElement<any> {
+    return(
+      <div>
+        <h1>gigantum</h1>
+        <p>You are using Gigantum</p>
+      </div>
+    );
   }
 }
 
