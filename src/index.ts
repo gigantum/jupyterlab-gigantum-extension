@@ -2,7 +2,11 @@ import {
   JupyterLab, JupyterLabPlugin
 } from '@jupyterlab/application';
 
+import { ICellTools, INotebookTracker } from '@jupyterlab/notebook';
+
 import GigantumWidget from './gigantum';
+//import TagTest from './tags';
+
 
 import '../style/index.css';
 
@@ -13,10 +17,13 @@ import '../style/index.css';
 const extension: JupyterLabPlugin<void> = {
   id: 'jupyterlab-gigantum-extension',
   autoStart: true,
-  activate: (app: JupyterLab) => {
-    const gigantumWidget = new GigantumWidget();
-    app.shell.addToLeftArea(gigantumWidget, {rank: 102});
-    console.log('JupyterLab extension jupyterlab-gigantum-extension is activated!');
+  requires: [INotebookTracker],
+  activate: (app: JupyterLab, notebook_Tracker: INotebookTracker,
+    cellTools: ICellTools) => {
+    const gigantumWidget = new GigantumWidget(app, notebook_Tracker);
+    //const tagWidget = new TagTest(app, notebook_Tracker)
+    app.shell.addToLeftArea(gigantumWidget, {rank: 5});
+    console.log('UPDATED');
   }
 };
 
