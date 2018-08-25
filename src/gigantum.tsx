@@ -31,13 +31,23 @@ export class GigantumWidget extends Panel {
 
 }
 
+interface ContentsState {
+    client_url: string;
+}
 
 class GigantumContents extends React.Component {
+  state: ContentsState;
+
+  constructor(props: object) {
+    super(props);
+    this.state = { client_url: 'https://localhost:10000' };
+  }
+
   render(): React.ReactElement<any> {
     return(
       <div>
         <h1>gigantum</h1>
-        <p>You are using Gigantum</p>
+        <p><a href={this.state.client_url}>Open client</a></p>
       </div>
     );
   }
