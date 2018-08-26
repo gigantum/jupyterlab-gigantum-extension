@@ -10,13 +10,6 @@ import {get_activity_mode} from "./cellutil"
 import { INotebookTracker } from '@jupyterlab/notebook';
 
 
-// import { ToolbarButton } from '@jupyterlab/apputils';
-
-// import { URLExt } from '@jupyterlab/coreutils';
-
-// import { ObservableValue } from '@jupyterlab/observables';
-
-
 /**
  * Widget for hosting the GitHub filebrowser.
  */
@@ -28,10 +21,7 @@ export class GigantumWidget extends Panel {
   constructor(app: JupyterLab, notebook_Tracker: INotebookTracker) {
     super();
     this.notebookTracker = notebook_Tracker;
-    console.log(this.notebookTracker.currentWidget)
-    this.notebookTracker.currentChanged.connect(() => { console.log('changed'); })
     this.notebookTracker.activeCellChanged.connect(this.selectCellHandler)
-
 
     this.client_url = 'https://localhost:10000'
     this.title.iconClass = 'jp-Gigantum-icon jp-SideBar-tabIcon';
