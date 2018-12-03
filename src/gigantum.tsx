@@ -10,7 +10,10 @@ import { Panel } from '@phosphor/widgets';
 import { INotebookTracker } from '@jupyterlab/notebook';
 import { Cell } from '@jupyterlab/cells';
 
-import {get_activity_mode} from "./cellutil"
+import {get_activity_mode, set_activity_mode} from "./cellutil"
+
+import '../style/gigantum.css';
+
 
 
 class GigantumWidget extends Panel {
@@ -40,39 +43,85 @@ type InfoProps = {
 
 class GigantumInfo extends React.Component {
   props: InfoProps;
-  state: { activeCell?: any,
-           activityMode: string };
-  // Once we have state, we should also specify types here
+  state: { activityMode: string,
+           currentCell: any };
 
   constructor(props: InfoProps) {
-    // Note that we'll keep *everything* we pass in to the component
     super(props);
 
-    // TODO this should get tucked into a child widget for each cell, and be
-    // freshly set each time we get a new cell.
-    this.state = { activityMode: 'auto' };
-    // XXX do we need to do antying addiitonal to set the initial cell?
+    this.state = {
+      activityMode: 'auto',
+      currentCell: null,
+   };
     props.notebookTracker.activeCellChanged.connect(
         (notebookTracker, cell) => this.selectCellHandler(notebookTracker, cell) );
   }
 
-  // Note that I couldn't figure out a better type for this
-  setTag(event: any) {
-    this.setState({activityMode: event.target.value})
-    console.log(this.state);
+  setTag(mode: string, cell: any) {
+    set_activity_mode(cell, mode);
+    this.setState({activityMode: mode})
   }
 
   render(): React.ReactElement<any> {
-    // the radio buttons are "uncontrolled" because radio buttons are annoying */
+    const isAuto = this.state.activityMode === 'auto';
+    const isShow = this.state.activityMode === 'show';
+    const isHide = this.state.activityMode === 'hide';
+    const isIgnore = this.state.activityMode === 'ignore';
     return(
-      <div>
-        <h1>gigantum!</h1>
-        <p><a href={this.props.clientUrl}>Open client</a></p>
-        <div onChange={event => this.setTag(event)}>
-          <input type="radio" value="auto" defaultChecked name="gigTag"/> Auto
-          <input type="radio" value="show" name="gigTag"/> Show
-          <input type="radio" value="hide" name="gigTag"/> Hide
-          <input type="radio" value="ignore" name="gigTag"/> Ignore
+      <div className="sideBar">
+        <a
+          className="logo"
+          href={this.props.clientUrl}
+        >
+        </a>
+
+        <div
+          className={`activity__type${isAuto ? ' activity__type--selected' : ''}`}
+          onClick={event => this.setTag('auto', this.state.currentCell)}
+        >
+          <label htmlFor="activity__label">
+            <b>Auto</b>
+          </label>
+
+          <p className="activity__paragraph">Gigantum will determine how the cell will be displayed in the activity feed</p>
+
+        </div>
+
+        <div
+          className={`activity__type${isShow ? ' activity__type--selected' : ''}`}
+          onClick={event => this.setTag('show', this.state.currentCell)}
+        >
+          <label htmlFor="activity__label">
+            <b>Show</b>
+          </label>
+
+          <p className="activity__paragraph">Ensures the cell will appear in the activity feed</p>
+
+        </div>
+
+        <div
+          className={`activity__type${isHide ? ' activity__type--selected' : ''}`}
+          onClick={event => this.setTag('hide', this.state.currentCell)}
+        >
+
+          <label htmlFor="activity__label">
+            <b>Hide</b>
+          </label>
+
+          <p className="activity__paragraph">Marks the cell as a minor activity and will be grouped with other minor activities in the activity feed</p>
+
+        </div>
+
+        <div
+          className={`activity__type${isIgnore ? ' activity__type--selected' : ''}`}
+          onClick={event => this.setTag('ignore', this.state.currentCell)}
+        >
+          <label htmlFor="activity__label">
+            <b>Ignore</b>
+          </label>
+
+          <p className="activity__paragraph">Cell will not appear in the gigantum activity feed</p>
+
         </div>
       </div>
     );
@@ -80,12 +129,7 @@ class GigantumInfo extends React.Component {
 
 
   protected selectCellHandler(notebookTracker: INotebookTracker, cell: Cell): void {
-    // TODO set the active cell, check current state
-    // we also need to hang onto a reference to the cell (or something) so we
-    // can update the tags
-    console.log(notebookTracker);
-    console.log(cell);
-    console.log(get_activity_mode(cell))
+    this.setState({ currentCell: cell, activityMode: get_activity_mode(cell) })
   }
 
 }
