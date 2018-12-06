@@ -6,7 +6,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { Panel } from '@phosphor/widgets';
+import { Widget } from '@phosphor/widgets';
 import { INotebookTracker } from '@jupyterlab/notebook';
 import { Cell } from '@jupyterlab/cells';
 
@@ -16,7 +16,7 @@ import '../style/gigantum.css';
 
 
 
-class GigantumWidget extends Panel {
+class GigantumWidget extends Widget {
 
   constructor(notebookTracker: INotebookTracker) {
     super();
