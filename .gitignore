@@ -3,6 +3,7 @@ lib/
 node_modules/
 *.egg-info/
 .ipynb_checkpoints
+*.ipynb
 env/
-/.DS_Store
+.DS_Store
 junk/
