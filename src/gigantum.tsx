@@ -28,7 +28,7 @@ class GigantumWidget extends Widget {
     this.addClass('jp-GigantumWidget');
 
     // we'll eventually set this dynamically using logic from the app
-    const clientUrl: string = "https://localhost:10000";
+    const clientUrl: string = "/";
 
     ReactDOM.render(<GigantumInfo clientUrl={clientUrl} notebookTracker={notebookTracker}/>,
                     this.node);

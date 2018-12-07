@@ -10,7 +10,7 @@ Integration with the Gigantum Client.
 ## Installation
 
 ```bash
-jupyter labextension install jupyterlab-gigantum-extension
+jupyter labextension install @gigantum/jupyterlab-extension
 ```
 
 ## Development

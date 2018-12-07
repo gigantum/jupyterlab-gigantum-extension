@@ -1,8 +1,9 @@
 {
-  "name": "jupyterlab-gigantum-extension",
+  "name": "@gigantum/jupyterlab-extension",
   "version": "0.1.0",
   "description": "Integration with the Gigantum Client.",
   "keywords": [
+    "gigantum",
     "jupyter",
     "jupyterlab",
     "jupyterlab-extension"
