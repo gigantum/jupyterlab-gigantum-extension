@@ -33,9 +33,6 @@
     "@jupyterlab/application": "^0.19.1",
     "@jupyterlab/notebook": "^0.19.2"
   },
-  "resolutions": {
-    "@types/react": "16.4.13"
-  },
   "devDependencies": {
     "rimraf": "^2.6.1",
     "typescript": "~2.9.2",
