@@ -1,6 +1,6 @@
 {
   "name": "@gigantum/jupyterlab-extension",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Integration with the Gigantum Client.",
   "keywords": [
     "gigantum",
@@ -34,9 +34,9 @@
     "@jupyterlab/notebook": "^0.19.2"
   },
   "devDependencies": {
+    "@types/react-dom": "^16.0.11",
     "rimraf": "^2.6.1",
-    "typescript": "~2.9.2",
-    "@types/react-dom": "^16.0.11"
+    "typescript": "~2.9.2"
   },
   "jupyterlab": {
     "extension": true
